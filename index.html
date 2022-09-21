@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Mobile{
+        constructor(name) {
+            this.name = name;
+            this.battery = 100;
+            this.drafts = "";
+            this.inbox = [];
+            this.outbox =[];
+            this.status = true;
+        }
+        checkStatus () {
+            this.battery--;
+            return this.status;
+        }
+        turnOnOff () {
+            this.battery--;
+            this.status = !this.status;
+        }
+        compose (text) {
+            this.battery--;
+            this.drafts = text;
+        }
+        sendMessage(person2) {
+            //person1(this) send drafts to person 2 and save drafts in outbox of person 1
+            this.outbox.push(this.drafts);
+            //person2 receive message of person 1 into inbox of person2
+            person2.inbox.push(this.drafts);
+            //delete drafts
+            this.drafts ="";
+            this.battery--;
+        }
+        getInbox(){
+            this.battery--;
+            return this.inbox;
+        }
+        getOutbox(){
+            this.battery--;
+            return this.outbox;
+        }
+    }
+    let nokia = new Mobile('nokia');
+    let Iphone = new Mobile('iphone');
+
+</script>
+</body>
+</html>
